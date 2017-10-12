@@ -3,7 +3,7 @@
 
 ## インストール
 ```bash
-composer require howyi/retort --dev
+composer require howyi/retort:~1.0.0 --dev
 ```
 
 
