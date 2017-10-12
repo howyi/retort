@@ -1,6 +1,12 @@
 # retort
 指定した名称のディレクトリを全てzip圧縮する
 
+## インストール
+```bash
+composer require howyi/retort --dev
+```
+
+
 ## 設定
 
 cwd以下に `rtrt.yml` を配置する
