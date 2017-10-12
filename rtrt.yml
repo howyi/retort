@@ -1,0 +1,4 @@
+name: Retort
+directories:
+  - src
+  - tests
