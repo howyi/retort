@@ -2,36 +2,37 @@
 
 namespace Howyi;
 
-use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Yaml as SymfonyYaml;
+use Howyi\Compressor\Zip;
 
 class Retort
 {
     public static function heat()
     {
-        self::recursive(function (\SplFileInfo $info, string $name) {
-            if ($info->isFile() and $info->getFilename() === "$name.zip") {
-                $zipPath = $info->getRealPath();
-                $dirPath = rtrim($info->getRealPath(), '.zip');
-                Zip::extract($zipPath, $dirPath);
+        self::recursive(function (\SplFileInfo $info, string $name, string $type) {
+            $ext = strtolower($type);
+            if ($info->isFile() and $info->getFilename() === "$name.$ext") {
+                $method = 'Howyi\Compressor\\' . ucfirst($type);
+                $method::extract($info->getRealPath());
             }
         });
     }
 
     public static function seal()
     {
-        self::recursive(function (\SplFileInfo $info, string $name) {
+        self::recursive(function (\SplFileInfo $info, string $name, string $type) {
             if ($info->isDir() and $info->getFilename() === $name) {
-                $dirPath = $info->getRealPath();
-                $zipPath = "$dirPath.zip";
-                Zip::archive($dirPath, $zipPath);
+                $method = 'Howyi\Compressor\\' . ucfirst($type);
+                $method::archive($info->getRealPath());
             }
         });
     }
 
     private static function recursive(callable $executer)
     {
+        $type = self::config()['type'];
+        $name = self::config()['name'];
         foreach (self::config()['directories'] as $dir) {
-            $name = self::config()['name'];
             $files = new \RecursiveIteratorIterator(
                 new \RecursiveDirectoryIterator(
                     $dir,
@@ -43,7 +44,7 @@ class Retort
             );
 
             foreach ($files as $path => $info) {
-                $executer($info, $name);
+                $executer($info, $name, $type);
             }
         }
     }
@@ -53,10 +54,11 @@ class Retort
         $path = getcwd() . DIRECTORY_SEPARATOR . 'rtrt.yml';
         if (file_exists($path)) {
             $contents = file_get_contents($path);
-            return Yaml::parse($contents);
+            return SymfonyYaml::parse($contents);
         } else {
             return [
-                'name' => 'Retort',
+                'type'        => 'zip',
+                'name'        => 'Retort',
                 'directories' => [
                     'src',
                     'tests',

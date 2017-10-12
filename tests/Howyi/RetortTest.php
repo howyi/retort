@@ -15,7 +15,8 @@ class RetortTest extends \PHPUnit\Framework\TestCase
     public function testHeat()
     {
         $config = [
-            'name' => 'Retort',
+            'type'        => 'zip',
+            'name'        => 'Retort',
             'directories' => [
                 'src',
                 'tests',
