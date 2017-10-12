@@ -11,6 +11,7 @@ composer require howyi/retort:~1.0.0 --dev
 
 cwd以下に `rtrt.yml` を配置する
 ```yaml
+type: zip
 # 圧縮、解凍するディレクトリ名 Retort/ <-> Retort.zip
 name: Retort
 # 検索するディレクトリ一覧 src/ tests/ 以下を検索する設定
