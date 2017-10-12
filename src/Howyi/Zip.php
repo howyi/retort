@@ -20,10 +20,8 @@ class Zip
             new \RecursiveDirectoryIterator($dirPath),
             \RecursiveIteratorIterator::LEAVES_ONLY
         );
-        foreach ($files as $name => $file)
-        {
-            if (!$file->isDir())
-            {
+        foreach ($files as $name => $file) {
+            if (!$file->isDir()) {
                 $filePath = $file->getRealPath();
                 $relativePath = substr($filePath, strlen($dirPath) + 1);
 
