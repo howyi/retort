@@ -1,0 +1,11 @@
+language: php
+php:
+  - 7.1
+before_script:
+  - composer install --dev
+script:
+  - vendor/bin/phpunit --coverage-clover=build/log/clover.xml
+  - make stan
+  - make cs
+after_success:
+  - travis_retry php vendor/bin/coveralls -v
