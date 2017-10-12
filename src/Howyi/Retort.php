@@ -9,7 +9,7 @@ class Retort
     public static function heat()
     {
         self::recursive(function (\SplFileInfo $info, string $name) {
-            if ($info->isFile() and $info->getFileName() === "$name.zip") {
+            if ($info->isFile() and $info->getFilename() === "$name.zip") {
                 $zipPath = $info->getRealPath();
                 $dirPath = rtrim($info->getRealPath(), '.zip');
                 Zip::extract($zipPath, $dirPath);
@@ -20,7 +20,7 @@ class Retort
     public static function seal()
     {
         self::recursive(function (\SplFileInfo $info, string $name) {
-            if ($info->isDir() and $info->getFileName() === $name) {
+            if ($info->isDir() and $info->getFilename() === $name) {
                 $dirPath = $info->getRealPath();
                 $zipPath = "$dirPath.zip";
                 Zip::archive($dirPath, $zipPath);
