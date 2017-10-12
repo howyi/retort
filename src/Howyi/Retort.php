@@ -51,7 +51,17 @@ class Retort
     private static function config()
     {
         $path = getcwd() . DIRECTORY_SEPARATOR . 'rtrt.yml';
-        $contents = file_get_contents($path);
-        return Yaml::parse($contents);
+        if (file_exists($path)) {
+            $contents = file_get_contents($path);
+            return Yaml::parse($contents);
+        } else {
+            return [
+                'name' => 'Retort',
+                'directories' => [
+                    'src',
+                    'tests',
+                ],
+            ];
+        }
     }
 }
