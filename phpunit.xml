@@ -15,7 +15,7 @@
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>
             <exclude>
-                <directory>./src/Conv/Command</directory>
+                <directory>./src/Howyi/Command</directory>
             </exclude>
         </whitelist>
     </filter>
