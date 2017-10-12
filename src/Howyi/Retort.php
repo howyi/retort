@@ -2,8 +2,7 @@
 
 namespace Howyi;
 
-use Symfony\Component\Yaml\Yaml as SymfonyYaml;
-use Howyi\Compressor\Zip;
+use Symfony\Component\Yaml\Yaml;
 
 class Retort
 {
@@ -54,7 +53,7 @@ class Retort
         $path = getcwd() . DIRECTORY_SEPARATOR . 'rtrt.yml';
         if (file_exists($path)) {
             $contents = file_get_contents($path);
-            return SymfonyYaml::parse($contents);
+            return Yaml::parse($contents);
         } else {
             return [
                 'type'        => 'zip',
