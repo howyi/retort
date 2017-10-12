@@ -16,9 +16,9 @@ directories:
 ## コマンド
 ディレクトリを圧縮
 ```bash
-./vendow/bin/rtrt seal
+./vendor/bin/rtrt seal
 ```
 ディレクトリを解凍
 ```bash
-./vendow/bin/rtrt heat
+./vendor/bin/rtrt heat
 ```
