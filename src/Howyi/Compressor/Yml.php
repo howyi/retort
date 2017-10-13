@@ -11,11 +11,11 @@ class Yml implements CompressorInterface
         $currentPath = rtrim($path, '.yml');
         $contents = SymfonyYaml::parse(file_get_contents($path));
         foreach ($contents as $filePath => $content) {
-            $dirPath = dirname($currentPath . DIRECTORY_SEPARATOR . $filePath);
+            $dirPath = dirname($currentPath . '/' . $filePath);
             if (!file_exists($dirPath)) {
                 mkdir($dirPath, 0777, true);
             }
-            file_put_contents($currentPath . DIRECTORY_SEPARATOR . $filePath, $content);
+            file_put_contents($currentPath . '/' . $filePath, $content);
         }
     }
 

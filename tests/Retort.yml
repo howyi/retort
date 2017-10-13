@@ -1,1 +1,1 @@
-test\test.php: "<?php\n// RTRT\n"
+test/test.php: "<?php\n// RTRT\n"
