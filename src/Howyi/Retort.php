@@ -56,7 +56,7 @@ class Retort
             return Yaml::parse($contents);
         } else {
             return [
-                'type'        => 'zip',
+                'type'        => 'yml',
                 'name'        => 'Retort',
                 'directories' => [
                     'src',

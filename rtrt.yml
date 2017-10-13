@@ -1,5 +1,0 @@
-type: zip
-name: Retort
-directories:
-  - src
-  - tests
