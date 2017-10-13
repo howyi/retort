@@ -36,6 +36,5 @@ class Yml implements CompressorInterface
         }
 
         file_put_contents($ymlPath, SymfonyYaml::dump($contents, 4, 2));
-
     }
 }
