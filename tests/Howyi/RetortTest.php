@@ -6,25 +6,17 @@ use Symfony\Component\Yaml\Yaml;
 
 class RetortTest extends \PHPUnit\Framework\TestCase
 {
-    public function testSeal()
+    public function testSealAndHeat()
     {
+        self::configYml();
+        Retort::heat();
         self::configZip();
         Retort::seal();
+        Retort::heat();
         self::configYml();
         Retort::seal();
         self::removeConfig();
         Retort::seal();
-        $this->assertTrue(true);
-    }
-
-    public function testHeat()
-    {
-        self::configZip();
-        Retort::heat();
-        self::configYml();
-        Retort::heat();
-        self::removeConfig();
-        Retort::heat();
         $this->assertTrue(true);
     }
 
