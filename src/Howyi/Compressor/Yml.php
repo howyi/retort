@@ -31,6 +31,7 @@ class Yml implements CompressorInterface
             if (!$file->isDir()) {
                 $filePath = $file->getRealPath();
                 $relativePath = substr($filePath, strlen($path) + 1);
+                $relativePath = str_replace('\\', '/', $relativePath);
                 $contents[$relativePath] = file_get_contents($filePath);
             }
         }
